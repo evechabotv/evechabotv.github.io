@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    document.documentElement.classList.add('js');
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('cardfile-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.setAttribute('data-bs-theme', t);
+    })();
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ève Chabot-Veilleux &mdash; Web Designer &amp; Front-End Developer, Bergen</title>
+  <meta name="description" content="Noor Halvorsen designs and builds accessible websites for small brands from Bergen, Norway. Resume, selected work, services and contact details.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#2b4744">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Icon sprite: reference with <svg><use href="#i-name"/></svg> -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-lightbulb" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/></symbol>
+    <symbol id="i-puzzle" viewBox="0 0 24 24"><path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z"/></symbol>
+    <symbol id="i-handheart" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-handshake preview-icon"><path d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762"/</symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="11" r="2.2"/><path d="M5 16c.6-1.6 1.7-2.4 3-2.4s2.4.8 3 2.4M14 10h5M14 13.5h3.5"/></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.2-4 4.2-6 8-6s6.8 2 8 6"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6M14 4l-4 16"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></symbol>
+    <symbol id="i-access" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2"/><path d="M4 8.5c2.6.8 5.3 1.2 8 1.2s5.4-.4 8-1.2M12 9.7V15m0 0-3 6m3-6 3 6"/></symbol>
+    <symbol id="i-brief" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 9 12 4 2 9l10 5 10-5z"/><path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5M22 9v6"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
+  </svg>
+
+  <div class="desk">
+    <div class="cardfile">
+
+      <!-- ======================= PROFILE COLUMN ======================= -->
+      <header class="profile" aria-label="Profile">
+        <div class="profile-inner">
+          <div class="profile-top">
+            <span class="card-no">
+            <button class="theme-toggle needs-js" type="button" aria-label="Switch to dark theme" data-theme-toggle>
+              <svg class="ico ico-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+              <svg class="ico ico-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+            </button>
+          </div>
+
+          <!-- Portrait slot: an illustrated monogram. Replace the <svg> with <img src="img/your-photo.jpg" alt="…"> if you prefer a photo. -->
+          <div class="stamp" role="img" aria-label="Monogram portrait of Noor Halvorsen">
+           <img src="img/your-photo.jpg" alt="…">
+          </div>
+
+          <h1 class="p-name" data-vcard="fn">Ève Chabot-Veilleux</h1>
+          <p class="p-role" data-vcard="title">Professionnelle en action climatique et développement communautaire</p>
+          <p class="p-note" data-vcard="note">Étudiante à la maîtrise en action climatique, ULaval  -   
+            Projet d'intervention sur les mesures d'adaptation communautaire à l'aléa chaleur dans le quartier Saint-Sauveur à Québec
+          </p>
+
+          <p class="availability"><span class="dot" aria-hidden="true"></span> Disponible à l'emploi dès janvier 2027</p>
+
+          <ul class="contact-list">
+            <li>
+              <span class="cl-ico" aria-hidden="true"><svg><use href="#i-mail"/></svg></span>
+              <span class="cl-body">
+                <span class="cl-label">Email</span>
+                <a href="mailto:evechabotveilleux@gmail.com" data-vcard="email">evechabotveilleux@gmail.com</a>
+              </span>
+              <button class="copy-btn needs-js" type="button" data-copy="evechabotveilleux@gmail.com" aria-label="Copy email address">
+                <svg class="ico" aria-hidden="true"><use href="#i-copy"/></svg>
+              </button>
+            </li>
+            <li>
+              <span class="cl-ico" aria-hidden="true"><svg><use href="#i-phone"/></svg></span>
+              <span class="cl-body">
+                <span class="cl-label">Téléphone</span>
+                <a href="tel:+15819912498" data-vcard="tel">+1 581-991-2498</a>
+              </span>
+            </li>
+            <li>
+              <span class="cl-ico" aria-hidden="true"><svg><use href="#i-pin"/></svg></span>
+              <span class="cl-body">
+                <span class="cl-label">Basée à</span>
+                <span data-vcard="adr" data-locality="Québec" data-country="Canada">Québec, Canada</span>
+              </span>
+            </li>
+            <li>
+              <span class="cl-ico" aria-hidden="true"><svg><use href="#i-globe"/></svg></span>
+              <span class="cl-body">
+                <span class="cl-label">Site web</span>
+                <a href="https://evechabotv.github.io/" data-vcard="url">evechabotv.github.io</a>
+              </span>
+            </li>
+
+            </li>
+          </ul>
+
+          <ul class="socials" aria-label="Elsewhere">
+            <li><a href="https://https://github.com/evechabotv">GitHub <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/in/ève-chabot-veilleux-106bb71b9/">LinkedIn <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+          </ul>
+
+
+      </header>
+
+      <!-- ======================= TABBED SHEET ======================= -->
+      <main id="main" class="sheet" tabindex="-1">
+        <nav class="tabs" aria-label="Sections">
+          <ul class="tab-list" data-tablist>
+            <li><a class="tab" id="tab-about" href="#about"><span class="tab-no" aria-hidden="true">01</span><svg class="ico" aria-hidden="true"><use href="#i-user"/></svg><span class="tab-label">À propos</span></a></li>
+            <li><a class="tab" id="tab-resume" href="#resume"><span class="tab-no" aria-hidden="true">02</span><svg class="ico" aria-hidden="true"><use href="#i-file"/></svg><span class="tab-label">Curriculum vitae</span></a></li>
+            <li><a class="tab" id="tab-portfolio" href="#portfolio"><span class="tab-no" aria-hidden="true">03</span><svg class="ico" aria-hidden="true"><use href="#i-grid"/></svg><span class="tab-label">Portfolio</span></a></li>
+            <li><a class="tab" id="tab-contact" href="#contact"><span class="tab-no" aria-hidden="true">04</span><svg class="ico" aria-hidden="true"><use href="#i-send"/></svg><span class="tab-label">Contact</span></a></li>
+          </ul>
+        </nav>
+
+        <!-- ======================= ABOUT ======================= -->
+        <section class="panel" id="about" aria-labelledby="about-title">
+          <div class="panel-head">
+            <p class="eyebrow">01 &middot; À propos </p>
+            <h2 id="about-title">Pour une action communautaire axée sur la justice climatique et l'engagement des collectivités.</h2>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-copy">
+              <p class="lead-text">Originaire de Québec et fière Limouloise depuis quatre ans, j'ai à coeur de participer activement à la transition socio-écologique à l'échelle de ma ville.</p>
+              <p>En plus de mes études, je m'implique actuellement à titre de présidente de la coopérative d'habitation Les Jardins d'Alchémilles, un projet citoyen qui accueillera ses premiers locataires à l'été 2027.</p>
+            </div>
+            <dl class="facts">
+              <div><dt>Années de vie sur cette planète</dt><dd>29</dd></div>
+              <div><dt>Années d'expérience en action communautaire</dt><dd>5</dd></div>
+              <div><dt>Années depuis l'adoption du plus beau chat au monde</dt><dd>4</dd></div>
+            </dl>
+          </div>
+
+          <h3 class="block-title">Mes forces</h3>
+          <div class="services">
+            <article class="service"> 
+              <span class="service-ico" aria-hidden="true"><svg><use href="#i-handheart"/></svg></span>
+              <h4>Engagement</h4>
+              <p>Je mets mon coeur dans tout ce que j'entreprends.</p> <p class="service-meta">Garanti!</p>
+            </article>
+            <article class="service">
+              <span class="service-ico" aria-hidden="true"><svg><use href="#i-puzzle"/></svg></span>
+              <h4>Polyvalence</h4>
+              <p>Je m'adapte aisément à une multitude de projets différents.</p>
+              <p class="service-meta">Prête à relever les défis</p>
+            </article>
+            <article class="service">
+              <span class="service-ico" aria-hidden="true"><svg><use href="#i-palette"/></svg></span>
+              <h4>Créativité</h4>
+              <p>J'essaie toujours de sortir des sentiers battus.</p>
+              <p class="service-meta">Imagination et intelligence collective</p>
+            </article>
+            <article class="service">
+              <span class="service-ico" aria-hidden="true"><svg><use href="#i-lightbulb"/></svg></span>
+              <h4>Initiative</h4>
+              <p>Je ne manque pas de nouvelles idées!</p>
+              <p class="service-meta">Proactivité</p>
+            </article>
+          </div>
+
+          <figure class="quote">
+            <blockquote>
+              <p>Ève était tellement bonne à l'école, ça se peut pas qu'elle ait un TDA!</p>
+            </blockquote>
+            <figcaption><span class="q-avatar" aria-hidden="true">MM</span><span><strong>Ma mère</strong> </span></figcaption>
+          </figure>
+
+
+        </section>
+
+        <!-- ======================= RESUME ======================= -->
+        <section class="panel" id="resume" aria-labelledby="resume-title">
+          <div class="panel-head panel-head--row">
+            <div>
+              <p class="eyebrow">02 &middot; Resume</p>
+              <h2 id="resume-title">Nine years of design and front&#8209;end work.</h2>
+            </div>
+            <button class="btn-card btn-card--ghost btn-sm-card needs-js" type="button" data-print>
+              <svg class="ico" aria-hidden="true"><use href="#i-print"/></svg> Print or save as PDF
+            </button>
+          </div>
+
+          <div class="resume-grid">
+            <div>
+              <h3 class="block-title"><svg class="ico" aria-hidden="true"><use href="#i-brief"/></svg> Experience</h3>
+              <ol class="timeline">
+                <li>
+                  <p class="tl-when"><time datetime="2021-02">Feb 2021</time> &ndash; now</p>
+                  <h4>Independent web designer &amp; developer</h4>
+                  <p class="tl-where">Studio Halvorsen, Bergen</p>
+                  <p>Design and build sites for small brands across Norway and Denmark. 24 launches, from a dental group&rsquo;s booking flow to a ceramic studio&rsquo;s shop.</p>
+                </li>
+                <li>
+                  <p class="tl-when"><time datetime="2018-04">Apr 2018</time> &ndash; <time datetime="2021-01">Jan 2021</time></p>
+                  <h4>Senior front-end developer</h4>
+                  <p class="tl-where">B&oslash;lge Digital, Bergen</p>
+                  <p>Led front-end on tourism and retail accounts. Set up the agency&rsquo;s component library and cut average page weight from 3.1&nbsp;MB to 900&nbsp;KB.</p>
+                </li>
+                <li>
+                  <p class="tl-when"><time datetime="2016-08">Aug 2016</time> &ndash; <time datetime="2018-03">Mar 2018</time></p>
+                  <h4>Web designer</h4>
+                  <p class="tl-where">Fjellvik Media, Oslo</p>
+                  <p>Designed campaign sites and newsletters for regional newspapers; first responsive redesign of the group&rsquo;s weekend magazine.</p>
+                </li>
+                <li>
+                  <p class="tl-when"><time datetime="2015-06">Jun 2015</time> &ndash; <time datetime="2016-06">Jun 2016</time></p>
+                  <h4>Design intern</h4>
+                  <p class="tl-where">Kystlys Tourism Board, &Aring;lesund</p>
+                  <p>Maps, signage and the first mobile guide to the coastal path.</p>
+                </li>
+              </ol>
+            </div>
+            <div>
+              <h3 class="block-title"><svg class="ico" aria-hidden="true"><use href="#i-cap"/></svg> Education</h3>
+              <ol class="timeline">
+                <li>
+                  <p class="tl-when"><time datetime="2019">2019</time></p>
+                  <h4>Certificate in Web Accessibility</h4>
+                  <p class="tl-where">Nordic Accessibility Institute, online</p>
+                  <p>Twelve-week course on WCAG, assistive technology testing and accessible components.</p>
+                </li>
+                <li>
+                  <p class="tl-when"><time datetime="2014">2014</time></p>
+                  <h4>Exchange semester, typography</h4>
+                  <p class="tl-where">Lindqvist Institute of Typography, Malm&ouml;</p>
+                  <p>Type design and editorial layout; designed a display face for the school press.</p>
+                </li>
+                <li>
+                  <p class="tl-when"><time datetime="2012">2012</time> &ndash; <time datetime="2015">2015</time></p>
+                  <h4>BA Interaction &amp; Visual Communication</h4>
+                  <p class="tl-where">Vestland School of Design, Bergen</p>
+                  <p>Graduation project: a wayfinding app for the Bergen fish market, tested with 40 visitors.</p>
+                </li>
+              </ol>
+
+              <h3 class="block-title" id="skills">Skills</h3>
+              <ul class="skills">
+                <li class="skill">
+                  <span class="skill-name">UI &amp; web design</span>
+                  <span class="skill-level">Expert</span>
+                  <span class="skill-bar" aria-hidden="true"><span style="--level: 95%"></span></span>
+                </li>
+                <li class="skill">
+                  <span class="skill-name">Semantic HTML &amp; CSS</span>
+                  <span class="skill-level">Expert</span>
+                  <span class="skill-bar" aria-hidden="true"><span style="--level: 92%"></span></span>
+                </li>
+                <li class="skill">
+                  <span class="skill-name">Design systems</span>
+                  <span class="skill-level">Advanced</span>
+                  <span class="skill-bar" aria-hidden="true"><span style="--level: 80%"></span></span>
+                </li>
+                <li class="skill">
+                  <span class="skill-name">JavaScript &amp; Astro</span>
+                  <span class="skill-level">Advanced</span>
+                  <span class="skill-bar" aria-hidden="true"><span style="--level: 76%"></span></span>
+                </li>
+                <li class="skill">
+                  <span class="skill-name">Brand identity</span>
+                  <span class="skill-level">Proficient</span>
+                  <span class="skill-bar" aria-hidden="true"><span style="--level: 64%"></span></span>
+                </li>
+                <li class="skill">
+                  <span class="skill-name">Photography</span>
+                  <span class="skill-level">Proficient</span>
+                  <span class="skill-bar" aria-hidden="true"><span style="--level: 60%"></span></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="resume-extra">
+            <div>
+              <h3 class="block-title">Tools</h3>
+              <ul class="chips">
+                <li>Figma</li><li>VS Code</li><li>Astro</li><li>WordPress</li><li>Eleventy</li><li>Git</li><li>Lightroom</li><li>Axe DevTools</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="block-title">Languages</h3>
+              <ul class="langs">
+                <li><span>Norwegian</span><span class="lang-level">Native</span></li>
+                <li><span>English</span><span class="lang-level">Fluent &middot; C2</span></li>
+                <li><span>German</span><span class="lang-level">Conversational &middot; B1</span></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================= PORTFOLIO ======================= -->
+        <section class="panel" id="portfolio" aria-labelledby="portfolio-title">
+          <div class="panel-head">
+            <p class="eyebrow">03 &middot; Portfolio</p>
+            <h2 id="portfolio-title">Selected work, filed by type.</h2>
+          </div>
+
+          <div class="filters needs-js" role="group" aria-label="Filter projects" data-filters>
+            <button type="button" class="filter" data-filter="all" aria-pressed="true">All <span class="count" aria-hidden="true">9</span></button>
+            <button type="button" class="filter" data-filter="web" aria-pressed="false">Websites <span class="count" aria-hidden="true">3</span></button>
+            <button type="button" class="filter" data-filter="brand" aria-pressed="false">Branding <span class="count" aria-hidden="true">2</span></button>
+            <button type="button" class="filter" data-filter="photo" aria-pressed="false">Photography <span class="count" aria-hidden="true">4</span></button>
+          </div>
+          <p class="filter-status visually-hidden" role="status" data-filter-status></p>
+
+          <ul class="works" data-works>
+            <li class="work" data-cat="web" data-role="Design, build, CMS training">
+              <button class="work-open" type="button" aria-haspopup="dialog" aria-label="View Fjordline Coffee project">
+                <span class="thumb thumb--shop" aria-hidden="true">
+                  <span class="mk-browser">
+                    <span class="mk-bar"><i></i><i></i><i></i></span>
+                    <span class="mk-nav"><b>Fjordline</b><em></em><em></em><em></em></span>
+                    <span class="mk-hero"><strong>Roasted on the quay, every Tuesday.</strong><span class="mk-cta">Shop beans</span></span>
+                    <span class="mk-products"><i></i><i></i><i></i></span>
+                  </span>
+                </span>
+                <span class="work-zoom" aria-hidden="true"><svg><use href="#i-expand"/></svg></span>
+              </button>
+              <div class="work-body">
+                <h3 class="work-title">Fjordline Coffee</h3>
+                <p class="work-meta">Website &middot; 2026</p>
+                <p class="work-desc">Online shop and subscription flow for a roastery with two caf&eacute;s on the Bergen waterfront.</p>
+              </div>
+            </li>
+
+            <li class="work" data-cat="brand" data-role="Identity, packaging labels, web palette">
+              <button class="work-open" type="button" aria-haspopup="dialog" aria-label="View Nordlys Ceramics project">
+                <span class="thumb thumb--nordlys" aria-hidden="true">
+                  <span class="nd-mark"></span>
+                  <span class="nd-word">nordlys<small>ceramics &middot; bergen</small></span>
+                  <span class="nd-swatches"><i></i><i></i><i></i><i></i></span>
+                </span>
+                <span class="work-zoom" aria-hidden="true"><svg><use href="#i-expand"/></svg></span>
+              </button>
+              <div class="work-body">
+                <h3 class="work-title">Nordlys Ceramics</h3>
+                <p class="work-meta">Branding &middot; 2025</p>
+                <p class="work-desc">A wordmark, glaze-inspired palette and kiln-stamp labels for a two-person pottery studio.</p>
+              </div>
+            </li>
+
+            <li class="work" data-cat="photo" data-role="Commissioned photography">
+              <button class="work-open" type="button" aria-haspopup="dialog" aria-label="View Harbour hall project">
+                <span class="thumb thumb--photo">
+                  <img src="img/work-concrete.jpg" alt="A glass concert hall rising above brick warehouses, framed by red construction cranes" width="1200" height="900" loading="lazy">
+                </span>
+                <span class="work-zoom" aria-hidden="true"><svg><use href="#i-expand"/></svg></span>
+              </button>
+              <div class="work-body">
+                <h3 class="work-title">Harbour hall, in progress</h3>
+                <p class="work-meta">Photography &middot; 2025</p>
+                <p class="work-desc">Construction series for Vik &amp; Strand Architects, used on their site and in a tender document.</p>
+              </div>
+            </li>
+
+            <li class="work" data-cat="web" data-role="UX, interface design, front-end">
+              <button class="work-open" type="button" aria-haspopup="dialog" aria-label="View Brygge Bikes project">
+                <span class="thumb thumb--phone" aria-hidden="true">
+                  <span class="mk-phone">
+                    <span class="mk-ph-head">Brygge Bikes</span>
+                    <span class="mk-ph-title">Pick a day</span>
+                    <span class="mk-cal"><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i></i><i class="on"></i><i></i><i></i></span>
+                    <span class="mk-ph-row"><b>City bike</b><b>2</b></span>
+                    <span class="mk-ph-cta">Book &middot; 420 kr</span>
+                  </span>
+                </span>
+                <span class="work-zoom" aria-hidden="true"><svg><use href="#i-expand"/></svg></span>
+              </button>
+              <div class="work-body">
+                <h3 class="work-title">Brygge Bikes</h3>
+                <p class="work-meta">Website &middot; 2025</p>
+                <p class="work-desc">A three-step rental booking flow, designed for phones on the street outside the shop.</p>
+              </div>
+            </li>
+
+            <li class="work" data-cat="photo" data-role="Personal project, exhibited">
+              <button class="work-open" type="button" aria-haspopup="dialog" aria-label="View Stairwell studies project">
+                <span class="thumb thumb--photo">
+                  <img src="img/work-stairs.jpg" alt="Concrete stairwell spiralling down, seen from the top landing" width="1200" height="900" loading="lazy">
+                </span>
+                <span class="work-zoom" aria-hidden="true"><svg><use href="#i-expand"/></svg></span>
+              </button>
+              <div class="work-body">
+                <h3 class="work-title">Stairwell studies</h3>
+                <p class="work-meta">Photography &middot; 2024</p>
+                <p class="work-desc">Twelve stairwells in post-war Bergen housing, shown at a caf&eacute; gallery in Nordnes.</p>
+              </div>
+            </li>
+
+            <li class="work" data-cat="brand" data-role="Identity, stationery, signage">
+              <button class="work-open" type="button" aria-haspopup="dialog" aria-label="View Kvist Studio project">
+                <span class="thumb thumb--kvist" aria-hidden="true">
+                  <span class="kv-letter"><b>kvist.</b><i></i><i></i><i></i><i></i></span>
+                  <span class="kv-card"><b>kvist.</b><small>landscape architects</small></span>
+                </span>
+                <span class="work-zoom" aria-hidden="true"><svg><use href="#i-expand"/></svg></span>
+              </button>
+              <div class="work-body">
+                <h3 class="work-title">Kvist Studio</h3>
+                <p class="work-meta">Branding &middot; 2024</p>
+                <p class="work-desc">Identity and stationery for a landscape architecture practice of six.</p>
+              </div>
+            </li>
+
+            <li class="work" data-cat="web" data-role="Design, build, accessibility review">
+              <button class="work-open" type="button" aria-haspopup="dialog" aria-label="View Solberg Dental project">
+                <span class="thumb thumb--dental" aria-hidden="true">
+                  <span class="mk-browser">
+                    <span class="mk-bar"><i></i><i></i><i></i></span>
+                    <span class="mk-split">
+                      <span class="mk-split-copy"><strong>Gentle dentistry in Sandviken</strong><em></em><em></em><span class="mk-cta">Book a check-up</span></span>
+                      <span class="mk-split-art"><i></i></span>
+                    </span>
+                  </span>
+                </span>
+                <span class="work-zoom" aria-hidden="true"><svg><use href="#i-expand"/></svg></span>
+              </button>
+              <div class="work-body">
+                <h3 class="work-title">Solberg Dental</h3>
+                <p class="work-meta">Website &middot; 2023</p>
+                <p class="work-desc">A clinic site with online booking, read aloud correctly by screen readers in Norwegian and English.</p>
+              </div>
+            </li>
+
+            <li class="work" data-cat="photo" data-role="Product and interior photography">
+              <button class="work-open" type="button" aria-haspopup="dialog" aria-label="View Caf&eacute; R&oslash;d project">
+                <span class="thumb thumb--photo">
+                  <img src="img/work-chair.jpg" alt="A red café table with a single flower in a glass, surrounded by worn mint-green chairs" width="1200" height="900" loading="lazy">
+                </span>
+                <span class="work-zoom" aria-hidden="true"><svg><use href="#i-expand"/></svg></span>
+              </button>
+              <div class="work-body">
+                <h3 class="work-title">Caf&eacute; R&oslash;d furniture</h3>
+                <p class="work-meta">Photography &middot; 2023</p>
+                <p class="work-desc">Interior shots for a caf&eacute; reopening, used on the menu site and social posts.</p>
+              </div>
+            </li>
+
+            <li class="work" data-cat="photo" data-role="Commissioned photography">
+              <button class="work-open" type="button" aria-haspopup="dialog" aria-label="View Exhibition hall facade project">
+                <span class="thumb thumb--photo">
+                  <img src="img/work-facade.jpg" alt="A curved, woven metal facade against a clear blue sky" width="1200" height="900" loading="lazy">
+                </span>
+                <span class="work-zoom" aria-hidden="true"><svg><use href="#i-expand"/></svg></span>
+              </button>
+              <div class="work-body">
+                <h3 class="work-title">Exhibition hall facade</h3>
+                <p class="work-meta">Photography &middot; 2022</p>
+                <p class="work-desc">Detail studies for a trade fair organiser&rsquo;s new visitor guide.</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- ======================= CONTACT ======================= -->
+        <section class="panel" id="contact" aria-labelledby="contact-title">
+          <div class="panel-head">
+            <p class="eyebrow">04 &middot; Contact</p>
+            <h2 id="contact-title">Tell me about the project.</h2>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-aside">
+              <p>I take on four or five projects a year so each one gets proper attention. Send a few lines about what you need and when; I reply within two working days.</p>
+              <ul class="contact-points">
+                <li><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg> <a href="mailto:hello@example.com">hello@example.com</a></li>
+                <li><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> <a href="tel:+4755512345">+47 555 12 345</a></li>
+                <li><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg> Mon&ndash;Thu, 09:00&ndash;16:00 CET</li>
+              </ul>
+              <div class="helpful">
+                <p class="helpful-title">Helpful to include</p>
+                <ul>
+                  <li>What the site needs to do for your business</li>
+                  <li>A rough budget and launch date</li>
+                  <li>Two or three sites you like, and why</li>
+                </ul>
+              </div>
+            </div>
+
+            <form class="contact-form" novalidate data-contact-form>
+              <div class="form-success" role="status" tabindex="-1" data-success>
+                <svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>
+                <div>
+                  <p class="fs-title">Thanks &mdash; your note is ready to go.</p>
+                  <p>This demo form only checks your entries in the browser. Connect it to a form service to receive messages.</p>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="cf-name">Your name</label>
+                  <input type="text" id="cf-name" name="name" autocomplete="name" required aria-describedby="cf-name-err">
+                  <span class="field-error" id="cf-name-err">Please enter your name.</span>
+                </div>
+                <div class="field">
+                  <label for="cf-email">Email</label>
+                  <input type="email" id="cf-email" name="email" autocomplete="email" required aria-describedby="cf-email-err">
+                  <span class="field-error" id="cf-email-err">Please enter a valid email address.</span>
+                </div>
+              </div>
+              <fieldset class="field">
+                <legend>What do you need?</legend>
+                <div class="radio-chips">
+                  <label><input type="radio" name="type" value="website" checked> <span>New website</span></label>
+                  <label><input type="radio" name="type" value="build"> <span>Front-end build</span></label>
+                  <label><input type="radio" name="type" value="system"> <span>Design system</span></label>
+                  <label><input type="radio" name="type" value="review"> <span>Accessibility review</span></label>
+                </div>
+              </fieldset>
+              <div class="field">
+                <label for="cf-budget">Budget</label>
+                <select id="cf-budget" name="budget" required aria-describedby="cf-budget-err">
+                  <option value="">Choose a range&hellip;</option>
+                  <option>Under 40 000 kr</option>
+                  <option>40 000 &ndash; 90 000 kr</option>
+                  <option>90 000 &ndash; 150 000 kr</option>
+                  <option>Over 150 000 kr</option>
+                  <option>Not sure yet</option>
+                </select>
+                <span class="field-error" id="cf-budget-err">Please choose a budget range.</span>
+              </div>
+              <div class="field">
+                <label for="cf-message">Project details</label>
+                <textarea id="cf-message" name="message" rows="5" minlength="20" required aria-describedby="cf-message-err"></textarea>
+                <span class="field-error" id="cf-message-err">A couple of sentences, please (20 characters or more).</span>
+              </div>
+              <button class="btn-card btn-card--primary" type="submit">
+                <svg class="ico" aria-hidden="true"><use href="#i-send"/></svg> Send message
+              </button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="site-foot">
+      <p>&copy; Ève Chabot-Veilleux &middot; Québec</p>
+      <p>Template by <a href="https://uicookies.com/">uiCookies</a></p>
+    </footer>
+  </div>
+
+  <!-- ======================= LIGHTBOX ======================= -->
+  <dialog class="lightbox" aria-labelledby="lb-title" data-lightbox>
+    <div class="lb-frame">
+      <button class="lb-close" type="button" aria-label="Close project" data-lb-close><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
+      <div class="lb-media" data-lb-media></div>
+      <div class="lb-body">
+        <p class="lb-meta" data-lb-meta></p>
+        <h2 class="lb-title" id="lb-title" data-lb-title>Project</h2>
+        <p class="lb-desc" data-lb-desc></p>
+        <p class="lb-role"><span>Role</span> <span data-lb-role></span></p>
+        <div class="lb-nav">
+          <button type="button" class="lb-step" aria-label="Previous project" data-lb-prev><svg class="ico" aria-hidden="true"><use href="#i-left"/></svg></button>
+          <span class="lb-count" data-lb-count>1 / 9</span>
+          <button type="button" class="lb-step" aria-label="Next project" data-lb-next><svg class="ico" aria-hidden="true"><use href="#i-right"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
